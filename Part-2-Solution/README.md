@@ -11,7 +11,7 @@ gamesDB> db
 3) Create a new collection called games, make sure it has been created.
 ```
 gamesDB> db.createCollection("games")
-// it will show { ok: 1 } to indicate that collection has been created
+{ ok: 1 }
 ```
 
 4) Write query to make sure that the collection was created.
