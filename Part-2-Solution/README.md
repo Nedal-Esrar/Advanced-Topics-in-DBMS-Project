@@ -21,7 +21,7 @@
 
 5) Add 5 games to the games collection; give each one of them has the following properties: name, publisher, year_released, and rating (value from 1 to 5).
 ```
->> db.gamesDB.insertMany([ 
+>> db.games.insertMany([ 
 	{name: "Minecraft", publisher: "Mojang", year_released: 2010, rating: 4}, 
 	{name: "GTA V", publisher: "Rockstar Games", year_released: 2014, rating: 5}, 
 	{name: "PUBG", publisher: "Krafton", year_released: 2018, rating: 3},
@@ -32,25 +32,25 @@
 
 6) Write a query to return all games in the collection.
 ```
->> db.gamesDB.find();
+>> db.games.find();
 ```
 
 7) Write a query that return only 3 games.
 ```
->> db.gamesDB.find().limit(3);
+>> db.games.find().limit(3);
 ```
 
 8) Write a query to return the top 3 games based on rating value.
 ```
->> db.gamesDB.find().sort({rating: -1}).limit(3);
+>> db.games.find().sort({rating: -1}).limit(3);
 ```
 
 9) Write a query that return games whose rating is 5 and released after 2007.
 ```
->> db.gamesDB.find({rating: 5, year_released: {$gt: 2007}});
+>> db.games.find({rating: 5, year_released: {$gt: 2007}});
 ```
 
 10) Update the game whose rating is 3 to be 4.
 ```
->> db.gamesDB.updateMany({rating: 3}, {$set: {rating: 4}});
+>> db.games.updateMany({rating: 3}, {$set: {rating: 4}});
 ```
