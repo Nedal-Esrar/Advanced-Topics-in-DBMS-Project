@@ -12,7 +12,7 @@
 >> show collections
 
 5) Add 5 games to the games collection; give each one of them has the following properties: name, publisher, year_released, and rating (value from 1 to 5).
->> db.games.insertMany([ 
+>>  >> db.games.insertMany([ 
 	{name: "Minecraft", publisher: "Mojang", year_released: 2010, rating: 4}, 
 	{name: "GTA V", publisher: "Rockstar Games", year_released: 2014, rating: 5}, 
 	{name: "PUBG", publisher: "Krafton", year_released: 2018, rating: 3},
