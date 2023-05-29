@@ -1,5 +1,7 @@
 1) Create a new database called gamesDB.
+```
 >> use gamesDB
+```
 
 2) Write a query to make sure that you are using the gamesDB.
 >> db
