@@ -85,31 +85,35 @@ public class JoinUsersRatingsJob {
   public static class JoinUsersRatingsReducer extends Reducer<Text, Text, Text, Text> {
     @Override
     public void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
-      Text user = null;
+      boolean userIsFound = false;
 
-      List<List<Text>> tuplesToEmit = new ArrayList<>();
+      List<String[]> tuplesToEmit = new ArrayList<>();
 
       for (Text value : values) {
         if (value.toString().equals("U")) {
-          user = value;
+          userIsFound = true;
         } else {
           String[] valueSplitted = value.toString().split("\t");
+          
+          String[] movieIDRatingTuple = {
+              valueSplitted[1],
+              valueSplitted[2]
+          };
 
-          List<Text> movieIDRatingTuple = List.of(
-              new Text(valueSplitted[1]),
-              new Text(valueSplitted[2])
-          );
-
-          ratingsValues.add(movieIDRatingTuple);
+          tuplesToEmit.add(movieIDRatingTuple);
         }
       }
 
-      if (user == null) {
+      if (!userIsFound) {
         return;
       }
 
-      for (List<Text> tuple : tuplesToEmit) {
-        context.write(tuple.get(0), tuple.get(1));
+      for (String[] tuple : tuplesToEmit) {
+        Text keyToEmit = new Text(tuple[0]);
+        
+        Text valueToEmit = new Text(tuple[1]);
+        
+        context.write(keyToEmit, valueToEmit);
       }
     }
   }
