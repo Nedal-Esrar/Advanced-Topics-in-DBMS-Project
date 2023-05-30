@@ -45,6 +45,7 @@ public class JoinMovieAvgTitleJob {
   }
 
   public static class MovieMapper extends Mapper<LongWritable, Text, Text, Text> {
+    @Override
     public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
       String[] valueSplitted = value.toString().split("\t");
 
@@ -61,6 +62,7 @@ public class JoinMovieAvgTitleJob {
   }
 
   public static class MovieRatingMapper extends Mapper<LongWritable, Text, Text, Text> {
+    @Override
     public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
       String[] valueSplitted = value.toString().split("\t");
 
@@ -73,6 +75,7 @@ public class JoinMovieAvgTitleJob {
   }
 
   public static class JoinAvgTitleReducer extends Reducer<Text, Text, Text, Text> {
+    @Override
     public void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
       String title = null;
 
