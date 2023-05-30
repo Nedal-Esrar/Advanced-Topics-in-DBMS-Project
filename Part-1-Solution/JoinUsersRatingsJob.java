@@ -49,6 +49,7 @@ public class JoinUsersRatingsJob {
   public static class UsersMapper extends Mapper<LongWritable, Text, Text, Text> {
     private static final USER_TAG = new Text("U");
 
+    @Override
     public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
       String[] valueSplitted = value.toString().split("\t");
 
@@ -63,6 +64,7 @@ public class JoinUsersRatingsJob {
   }
 
   public static class RatingsMapper extends Mapper<LongWritable, Text, Text, Text> {
+    @Override
     public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
       String[] valueSplitted = value.toString().split("\t");
 
@@ -81,6 +83,7 @@ public class JoinUsersRatingsJob {
   }
 
   public static class JoinUsersRatingsReducer extends Reducer<Text, Text, Text, Text> {
+    @Override
     public void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
       Text user = null;
 
